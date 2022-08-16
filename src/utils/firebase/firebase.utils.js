@@ -13,20 +13,20 @@ import {
   getFirestore,
   doc,
   getDoc,
-  getDocs,
   setDoc,
   collection,
   writeBatch,
   query,
+  getDocs,
 } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDDU4V-_QV3M8GyhC9SVieRTDM4dbiT0Yk',
-  authDomain: 'crwn-clothing-db-98d4d.firebaseapp.com',
-  projectId: 'crwn-clothing-db-98d4d',
-  storageBucket: 'crwn-clothing-db-98d4d.appspot.com',
-  messagingSenderId: '626766232035',
-  appId: '1:626766232035:web:506621582dab103a4d08d6',
+  apiKey: "AIzaSyB-bQqXRe9t7PFbTnf6fcBjV6ctvM7DhHw",
+  authDomain: "shopping-db-88caf.firebaseapp.com",
+  projectId: "shopping-db-88caf",
+  storageBucket: "shopping-db-88caf.appspot.com",
+  messagingSenderId: "110624239150",
+  appId: "1:110624239150:web:399eb4812637f5fd7179bf"
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -47,12 +47,13 @@ export const db = getFirestore();
 
 export const addCollectionAndDocuments = async (
   collectionKey,
-  objectsToAdd
+  objectsToAdd,
+  field
 ) => {
-  const batch = writeBatch(db);
   const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
 
-  objectsToAdd.forEach(async (object) => {
+  objectsToAdd.forEach((object) => {
     const docRef = doc(collectionRef, object.title.toLowerCase());
     batch.set(docRef, object);
   });
